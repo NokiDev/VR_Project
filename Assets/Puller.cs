@@ -15,8 +15,8 @@ public class Puller : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		/// Animation / Coroutines
-	}
+
+    }
 
     public void Pull()
     {

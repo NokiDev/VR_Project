@@ -11,6 +11,8 @@ public class HandsInputs : MonoBehaviour {
     public Pusher PusherGO;
     public Puller PullerGO;
 
+    public OVRInput.Controller associatedController;
+
 	// Use this for initialization
 	void Start () {
         Debug.Assert(PusherGO != null && PullerGO != null);
@@ -19,16 +21,32 @@ public class HandsInputs : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        
-        if (OVRInput.Get(OVRInput.Touch.PrimaryIndexTrigger) || Input.GetKey(debugKey))
+        //Pressing handtrigger and not touching the Index trigger will activate pull effect.   
+        if (OVRInput.Get(OVRInput.Button.PrimaryHandTrigger, associatedController) && !OVRInput.Get(OVRInput.Touch.PrimaryIndexTrigger, associatedController))
         {//Pull objects.
+            Debug.Log("Pressing hand trigger, and released touch events.");
             PullerGO.Pull();//Run Animation.
         }
-
-        if (OVRInput.GetUp(OVRInput.Touch.PrimaryIndexTrigger) || Input.GetKeyUp(debugKey))
+        //Uppon NearTouch
+        if (OVRInput.GetDown(OVRInput.NearTouch.PrimaryIndexTrigger, associatedController))
         {
-            PullerGO.Stop();
+            //use force /2 and energy /2
+            Debug.Log("NearTouch Down");
+        }
+        if (OVRInput.GetUp(OVRInput.NearTouch.PrimaryIndexTrigger, associatedController))
+        {
+            Debug.Log("NearTouch Up");
+            //reset to original force / energy rate.
+        }
+        if (OVRInput.Get(OVRInput.Touch.PrimaryIndexTrigger, associatedController))
+        {
+            Debug.Log("Touching index trigger");
+            PullerGO.Stop();//stop using mana and pulling objects.
+        }
 
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, associatedController)  && OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger, associatedController) || Input.GetKeyUp(debugKey))
+        {
+            Debug.Log("Released Index trigger and hand trigger");
             PusherGO.Push();
         }
     }
