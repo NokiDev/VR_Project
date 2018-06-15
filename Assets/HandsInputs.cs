@@ -15,7 +15,7 @@ public class HandsInputs : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Debug.Assert(PusherGO != null && PullerGO != null);
+        //Debug.Assert(PusherGO != null && PullerGO != null);
     }
 
     // Update is called once per frame
