@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4574297179169382}
   - component: {fileID: 114690611151250670}
   - component: {fileID: 136791967874490430}
-  - component: {fileID: 95283679379486872}
+  - component: {fileID: 95023330412379786}
   m_Layer: 0
   m_Name: Puller
   m_TagString: Untagged
@@ -426,6 +426,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 1.2, z: 1.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &95023330412379786
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1002563195492358}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 184eac5eb59421b47bc69377ee478b5b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!95 &95041626128502790
 Animator:
   serializedVersion: 3
@@ -436,24 +454,6 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 9184edafb75ec9547a0156a43b1e850c, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!95 &95283679379486872
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1002563195492358}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 184eac5eb59421b47bc69377ee478b5b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -473,7 +473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d2c64c1ab4a1c442880268e878dcc2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugKey: 113
+  pushKey: 113
+  pullKey: 112
   PusherGO: {fileID: 114178911836502358}
   PullerGO: {fileID: 114690611151250670}
   associatedController: 1
@@ -505,6 +506,7 @@ MonoBehaviour:
   maxPullForce: {x: 10, y: 10, z: 10}
   maxPullDistance: 10
   catchDistance: 0.5
+  energyCostPerSeconds: 2
   data: {fileID: 114732669901880036}
 --- !u!114 &114732669901880036
 MonoBehaviour:

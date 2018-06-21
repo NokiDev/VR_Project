@@ -14,8 +14,10 @@ public class Puller : MonoBehaviour {
     private List<Rigidbody> catchedObjects = new List<Rigidbody>();
 
     public float catchDistance = 0.5f;
+    public float energyCostPerSeconds = 2f;
 
     public HandsData data;
+    private bool pulling;
 
     Animator animator;
 
@@ -39,29 +41,32 @@ public class Puller : MonoBehaviour {
     {
         if (started)
         {
-            List<Rigidbody> tmp = new List<Rigidbody>();
-            foreach (var pulledObject in pulledObjects)
+            if(pulling)
             {
-                Vector3 direction = (transform.position - pulledObject.transform.position);
-                float distance = direction.magnitude;
-                if (distance < catchDistance)
+                List<Rigidbody> tmp = new List<Rigidbody>();
+                foreach (var pulledObject in pulledObjects)
                 {
-                    pulledObject.isKinematic = true;
-                    pulledObject.transform.SetParent(transform.parent);
-                    catchedObjects.Add(pulledObject);
+                    Vector3 direction = (transform.position - pulledObject.transform.position);
+                    float distance = direction.magnitude;
+                    if (distance < catchDistance)
+                    {
+                        pulledObject.isKinematic = true;
+                        pulledObject.transform.SetParent(transform.parent);
+                        catchedObjects.Add(pulledObject);
+                    }
+                    else
+                    {
+                        tmp.Add(pulledObject);
+                        Vector3 appliedForce = Vector3.Lerp(maxPullForce, Vector3.zero, distance / maxPullDistance); // Keep objects at close range.
+                        Debug.Log("applied force : " + appliedForce);
+                        Debug.Log("Direction : " + direction);
+                        Debug.Log("Distance " + distance);
+                        appliedForce.Scale(direction);
+                        pulledObject.AddForceAtPosition(appliedForce, transform.position);
+                    }
                 }
-                else
-                {
-                    tmp.Add(pulledObject);
-                    Vector3 appliedForce = Vector3.Lerp(maxPullForce, Vector3.zero, distance / maxPullDistance); // Keep objects at close range.
-                    Debug.Log("applied force : " + appliedForce);
-                    Debug.Log("Direction : " + direction);
-                    Debug.Log("Distance " + distance);
-                    appliedForce.Scale(direction);
-                    pulledObject.AddForceAtPosition(appliedForce, transform.position);
-                }
+                pulledObjects = tmp;
             }
-            pulledObjects = tmp;
         }
     }
 
@@ -73,6 +78,15 @@ public class Puller : MonoBehaviour {
         {
             var rb = other.GetComponent<Rigidbody>();
             rb.useGravity = false;
+            pulledObjects.Add(rb);
+        }
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        var rb = other.GetComponent<Rigidbody>();
+        if (!pulledObjects.Contains(rb))
+        {
             pulledObjects.Add(rb);
         }
     }
@@ -92,14 +106,22 @@ public class Puller : MonoBehaviour {
     public void Pull()
     {
         started = true;
+        pulling = true;
         //Start coroutine for energy consumtion.
         //Pull effect code.
-        animator.SetBool("isPull", true);
+        animator.SetBool("isPull", pulling);
     }
 
     public void Stop()
     {
         started = false;
+        StopPulling();
+        ReleaseObjects();
+    }
+
+    public void StopPulling()
+    {
+        pulling = false;
         animator.SetBool("isPull", false);
         //Stop coroutine for energy consumtion.
         //Stop pull effect nicely.
@@ -128,4 +150,15 @@ public class Puller : MonoBehaviour {
         pulledObjects.Clear();
         catchedObjects.Clear();
     }
+
+    IEnumerator consumeEnergy()
+    {
+        while(started)
+        {
+            data.UseEnergy(pulling ? energyCostPerSeconds : energyCostPerSeconds/2);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+
 }
