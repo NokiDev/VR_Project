@@ -41,7 +41,7 @@ public class Pusher : MonoBehaviour {
             rb.isKinematic = false; //disable kinematic mode to Add force
             rb.useGravity = true;
             obj.transform.SetParent(null); // remove parent of object
-            rb.AddForce(obj.transform.forward * power);
+            rb.AddForce(transform.forward * power);
             rb.AddTorque(obj.transform.right * Random.Range(power, power * 1.5f)); //to simumulate rotation during expulse
         }
 
