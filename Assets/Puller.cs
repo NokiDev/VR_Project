@@ -23,13 +23,13 @@ public class Puller : MonoBehaviour {
 
 
     void Start() {
-        data.outOfEnergy += ReleaseObjects;
+        data.outOfEnergy += Stop;
         animator = GetComponent<Animator>();
     }
 
     private void OnDestroy()
     {
-        data.outOfEnergy -= ReleaseObjects;
+        data.outOfEnergy -= Stop;
     }
 
     // Update is called once per frame
@@ -107,6 +107,7 @@ public class Puller : MonoBehaviour {
     {
         started = true;
         pulling = true;
+        StartCoroutine("consumeEnergy");
         //Start coroutine for energy consumtion.
         //Pull effect code.
         animator.SetBool("isPull", pulling);
