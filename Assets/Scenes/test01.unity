@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -424,7 +424,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1879737731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -448,10 +448,10 @@ MonoBehaviour:
   - {fileID: 100000, guid: e2abe2db222fa9c49a111c088001ebcf, type: 2}
   isDispawnable: 0
   time: 0.2
-  angle: 57
+  angle: 210
   maxSpawn: 20
-  minDistance: 5
-  maxDistance: 20
+  minDistance: 2
+  maxDistance: 10
   minHauteur: 0
   maxHauteur: 5
 --- !u!114 &1879737737
@@ -472,7 +472,7 @@ MonoBehaviour:
   time: 1
   angle: 180
   maxSpawn: 20
-  minDistance: 20
-  maxDistance: 30
-  minHauteur: 10
-  maxHauteur: 30
+  minDistance: 10
+  maxDistance: 20
+  minHauteur: 2
+  maxHauteur: 10
