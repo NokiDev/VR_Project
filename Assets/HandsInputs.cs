@@ -42,7 +42,7 @@ public class HandsInputs : MonoBehaviour {
         if (OVRInput.Get(OVRInput.Touch.PrimaryIndexTrigger, associatedController) || Input.GetKeyUp(pullKey))
         {
             Debug.Log("Touching index trigger");
-            PullerGO.Stop();//stop using mana and pulling objects.
+            PullerGO.StopPulling();//stop using mana and pulling objects.
         }
 
         if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, associatedController) || Input.GetKeyDown(pushKey))
