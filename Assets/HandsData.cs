@@ -9,10 +9,12 @@ public class HandsData : MonoBehaviour {
     public delegate void FloatEmitter(float value);
     public delegate void BoolEmitter(bool value);
     public delegate void IntegerEmitter(int value);
+    public delegate void EmptyEmitter();
 
 
 
     public event FloatEmitter energyChanged;
+    public event EmptyEmitter outOfEnergy;
 
     public float CurrentEnergy
     {
@@ -24,7 +26,11 @@ public class HandsData : MonoBehaviour {
         set
         { 
             currentEnergy = value;
-            if(currentEnergy < 0) currentEnergy = 0;
+            if(currentEnergy < 0) 
+            {
+                currentEnergy = 0;
+                if(outOfEnergy!=null) outOfEnergy();
+            } 
             if(currentEnergy > maxEnergy) currentEnergy = maxEnergy;
 
             if(energyChanged != null) energyChanged(currentEnergy);

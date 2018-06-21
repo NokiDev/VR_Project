@@ -44,10 +44,10 @@ public class HandsInputs : MonoBehaviour {
             PullerGO.Stop();//stop using mana and pulling objects.
         }
 
-        if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, associatedController)  && OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger, associatedController) || Input.GetKeyUp(debugKey))
+        if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, associatedController) || Input.GetKeyUp(debugKey))
         {
             Debug.Log("Released Index trigger and hand trigger");
-            //PusherGO.Push();
+            PusherGO.Push(PullerGO.GetCatchedObject());
         }
     }
 }
