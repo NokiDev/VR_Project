@@ -7,7 +7,6 @@ public class powerRenderer : MonoBehaviour {
 
     float maxEnergy;
     Image fillImg;
-    float energy;
 	// Use this for initialization
 	void Start () {
         fillImg = this.GetComponent<Image>();
@@ -21,9 +20,6 @@ public class powerRenderer : MonoBehaviour {
 	}
     void updateEnergy(float currentEnergy)
     {
-        if (energy > 0)
-        {
-            fillImg.fillAmount = energy / maxEnergy;
-        }
+        fillImg.fillAmount = currentEnergy / maxEnergy;
     }
 }
