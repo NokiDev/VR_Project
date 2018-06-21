@@ -9,7 +9,7 @@ public class Puller : MonoBehaviour {
 
     // Use this for initialization
 
-    private bool started = true;
+    private bool started = false;
     private List<Rigidbody> pulledObjects = new List<Rigidbody>();
     private List<Rigidbody> catchedObjects = new List<Rigidbody>();
 
@@ -17,9 +17,12 @@ public class Puller : MonoBehaviour {
 
     public HandsData data;
 
+    Animator animator;
+
 
     void Start() {
         data.outOfEnergy += ReleaseObjects;
+        animator = GetComponent<Animator>();
     }
 
     private void OnDestroy()
@@ -91,11 +94,13 @@ public class Puller : MonoBehaviour {
         started = true;
         //Start coroutine for energy consumtion.
         //Pull effect code.
+        animator.SetBool("isPull", true);
     }
 
     public void Stop()
     {
         started = false;
+        animator.SetBool("isPull", false);
         //Stop coroutine for energy consumtion.
         //Stop pull effect nicely.
         //Stop animation.

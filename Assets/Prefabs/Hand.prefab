@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4574297179169382}
   - component: {fileID: 114690611151250670}
   - component: {fileID: 136791967874490430}
+  - component: {fileID: 95283679379486872}
   m_Layer: 0
   m_Name: Puller
   m_TagString: Untagged
@@ -153,7 +154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1804632007171816
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +251,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1941314462785518}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
@@ -443,6 +444,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!95 &95283679379486872
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1002563195492358}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 184eac5eb59421b47bc69377ee478b5b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114063527859675042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -483,7 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70199b3aa793ef44790b27c4c1ea08e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPullForce: {x: 10, y: 1, z: 1}
+  maxPullForce: {x: 10, y: 10, z: 10}
   maxPullDistance: 10
   catchDistance: 0.5
   data: {fileID: 114732669901880036}
