@@ -47,7 +47,7 @@ public class HandsInputs : MonoBehaviour {
         if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger, associatedController)  && OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger, associatedController) || Input.GetKeyUp(debugKey))
         {
             Debug.Log("Released Index trigger and hand trigger");
-            PusherGO.Push();
+            //PusherGO.Push();
         }
     }
 }
