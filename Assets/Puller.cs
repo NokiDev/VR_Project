@@ -124,16 +124,13 @@ public class Puller : MonoBehaviour {
     {
         pulling = false;
         animator.SetBool("isPull", false);
+        StopCoroutine("consumeEnergy");
         //Stop coroutine for energy consumtion.
         //Stop pull effect nicely.
-        //Stop animation.
-    }
+        pulledObjects.Clear();}
 
     public List<GameObject> GetCatchedObject() {
-        List<GameObject> l = catchedObjects.ConvertAll<GameObject>((rigidbody) => { return rigidbody.gameObject; });
-        Debug.Log(l.Count);
-        Debug.Log(catchedObjects.Count);
-        return l;
+        return catchedObjects.ConvertAll<GameObject>((rigidbody) => { return rigidbody.gameObject; });
     }
 
     public void ReleaseObjects()
