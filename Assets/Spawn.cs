@@ -37,7 +37,7 @@ public class Spawn : MonoBehaviour {
         return new Vector3(x, y, z);
     }
 
-    IEnumerator spawnObject()
+    private IEnumerator spawnObject()
     {
         while (true) {
             int randObjet = Random.Range(0, objets.Count);
