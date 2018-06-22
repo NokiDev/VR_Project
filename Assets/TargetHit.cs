@@ -8,10 +8,6 @@ public class TargetHit : MonoBehaviour {
 
     public AudioClip crashSoft;
 
-    
-
-    //public Score score;
-
     private AudioSource source;
     private float lowPitchRange = .75F;
     private float highPitchRange = 1.5F;
@@ -34,13 +30,7 @@ public class TargetHit : MonoBehaviour {
     {
 
     }
-
-    void Awake()
-    {
-        
-    }
-
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == collisionObjectName)
@@ -57,5 +47,21 @@ public class TargetHit : MonoBehaviour {
             source.PlayOneShot(crashSoft, hitVol);
         }
 
+        if (collision.gameObject.name == "Terrain")
+        {
+            Vector3 pos = gameObject.transform.position;
+            GameObject mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
+            float max;
+            if (mainCamera.GetComponents<Spawn>()[0].nameTag == "Rock")
+            {
+                max = mainCamera.GetComponents<Spawn>()[0].maxDistance;
+            } else
+            {
+                max = mainCamera.GetComponents<Spawn>()[1].maxDistance;
+            }
+            //Debug.Log("dist" + max);
+            if (pos.x > max || pos.z > max || pos.x < 0 - max || pos.z < 0 - max)
+                Destroy(gameObject);
+        }
     }
 }
