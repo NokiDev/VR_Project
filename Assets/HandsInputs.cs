@@ -28,6 +28,10 @@ public class HandsInputs : MonoBehaviour {
             Debug.Log("Pressing hand trigger, and released touch events.");
             PullerGO.Pull();//Run Animation.
         }
+        if(OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger, associatedController) && !OVRInput.Get(OVRInput.Touch.PrimaryIndexTrigger, associatedController))
+        {
+            PullerGO.StopPulling();
+        }
         //Uppon NearTouch
         if (OVRInput.GetDown(OVRInput.NearTouch.PrimaryIndexTrigger, associatedController))
         {
@@ -49,6 +53,7 @@ public class HandsInputs : MonoBehaviour {
         {
             Debug.Log("Released Index trigger and hand trigger");
             PusherGO.Push(PullerGO.GetCatchedObject());
+            PullerGO.ClearCatchedObjects();
         }
     }
 }

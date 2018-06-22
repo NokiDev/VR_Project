@@ -53,4 +53,10 @@ public class HandsData : MonoBehaviour {
         CurrentEnergy -= energyUsed;
 
     }
+
+    public void ReloadEnergy(float energyReloaded)
+    {
+        CurrentEnergy += energyReloaded;
+    }
+
 }

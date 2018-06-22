@@ -15,12 +15,15 @@ public class Puller : MonoBehaviour {
 
     public float catchDistance = 0.5f;
     public float energyCostPerSeconds = 2f;
+    public float energyReloadedPerSecond = 1f;
 
     public HandsData data;
     private bool pulling;
 
     Animator animator;
 
+    Coroutine consumeEnergy;
+    Coroutine reloadEnergy;
 
     void Start() {
         data.outOfEnergy += Stop;
@@ -72,9 +75,7 @@ public class Puller : MonoBehaviour {
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered");
-        Debug.Log(other.name);
-        if (started)
+        if (started && other.tag == "Rock") ;
         {
             var rb = other.GetComponent<Rigidbody>();
             rb.useGravity = false;
@@ -105,12 +106,23 @@ public class Puller : MonoBehaviour {
 
     public void Pull()
     {
-        started = true;
-        pulling = true;
-        StartCoroutine("consumeEnergy");
-        //Start coroutine for energy consumtion.
-        //Pull effect code.
-        animator.SetBool("isPull", pulling);
+        if(data.CurrentEnergy > 0)
+        {
+            started = true;
+            pulling = true;
+            StopCoroutine("ReloadEnergy");
+            reloadEnergy = null;
+            if (consumeEnergy == null)
+                consumeEnergy = StartCoroutine("ConsumeEnergy");
+            //Start coroutine for energy consumtion.
+            //Pull effect code.
+            animator.SetBool("isPull", pulling);
+        }
+        else
+        {
+            StopPulling();
+        }
+        
     }
 
     public void Stop()
@@ -122,15 +134,32 @@ public class Puller : MonoBehaviour {
 
     public void StopPulling()
     {
+        started = false;
         pulling = false;
         animator.SetBool("isPull", false);
-        StopCoroutine("consumeEnergy");
+        StopCoroutine("ConsumeEnergy");
+        consumeEnergy = null;
         //Stop coroutine for energy consumtion.
         //Stop pull effect nicely.
-        pulledObjects.Clear();}
+        if(reloadEnergy == null)
+        {
+            reloadEnergy = StartCoroutine("ReloadEnergy");
+        }
+        
+        foreach (var rb in pulledObjects)
+        {
+            rb.useGravity = true;
+        }
+        pulledObjects.Clear();
+    }
 
     public List<GameObject> GetCatchedObject() {
         return catchedObjects.ConvertAll<GameObject>((rigidbody) => { return rigidbody.gameObject; });
+    }
+
+    public void ClearCatchedObjects()
+    {
+        catchedObjects.Clear();
     }
 
     public void ReleaseObjects()
@@ -149,11 +178,22 @@ public class Puller : MonoBehaviour {
         catchedObjects.Clear();
     }
 
-    IEnumerator consumeEnergy()
+    IEnumerator ConsumeEnergy()
     {
         while(started)
         {
             data.UseEnergy(pulling ? energyCostPerSeconds : energyCostPerSeconds/2);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    IEnumerator ReloadEnergy()
+    {
+        Debug.Log("reload started");
+        while (!started)
+        {
+            Debug.Log(data.CurrentEnergy);
+            data.ReloadEnergy(energyReloadedPerSecond);
             yield return new WaitForSeconds(1f);
         }
     }

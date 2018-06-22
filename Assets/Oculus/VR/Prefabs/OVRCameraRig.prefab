@@ -1412,7 +1412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f676381d24115458218104cd4af459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnergy: 50
+  maxEnergy: 20
 --- !u!114 &114019325651237450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b3dc091e3fc3f48812bab19816e5e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 5
+  power: 60
   testObjects: []
   testMode: 0
 --- !u!114 &114091296606378986
@@ -1475,7 +1475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b3dc091e3fc3f48812bab19816e5e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 5
+  power: 60
   testObjects: []
   testMode: 0
 --- !u!114 &114314714570018500
@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f676381d24115458218104cd4af459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnergy: 10
+  maxEnergy: 20
 --- !u!114 &114433178720507968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1548,6 +1548,7 @@ MonoBehaviour:
   maxPullDistance: 10
   catchDistance: 0.5
   energyCostPerSeconds: 2
+  energyReloadedPerSecond: 1
   data: {fileID: 114003485443712362}
 --- !u!114 &114609877987884176
 MonoBehaviour:
@@ -1564,6 +1565,7 @@ MonoBehaviour:
   maxPullDistance: 10
   catchDistance: 0.5
   energyCostPerSeconds: 2
+  energyReloadedPerSecond: 1
   data: {fileID: 114422096585445016}
 --- !u!114 &114740719752647692
 MonoBehaviour:

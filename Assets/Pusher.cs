@@ -37,6 +37,7 @@ public class Pusher : MonoBehaviour {
         Debug.Log(objects.Count);
         foreach (GameObject obj in objects)
         {
+            obj.tag = "Untagged";
             Rigidbody rb = obj.GetComponent<Rigidbody>(); //Get rigidbody component of object
             rb.isKinematic = false; //disable kinematic mode to Add force
             rb.useGravity = true;
@@ -44,7 +45,15 @@ public class Pusher : MonoBehaviour {
             Debug.Log("applied push force + " + power);
             rb.AddForce(transform.right * power);//FIXME use transform.forward
             rb.AddTorque(obj.transform.forward * Random.Range(power, power * 1.5f)); //to simumulate rotation during expulse
+            ResetTagObject(obj);
         }
 
+    }
+
+    IEnumerator ResetTagObject(GameObject obj)
+    {
+
+        yield return new WaitForSeconds(3f);
+        obj.tag = "Rock";
     }
 }
