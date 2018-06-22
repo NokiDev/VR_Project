@@ -14,7 +14,7 @@ public class GameManager : UnDestroyable {
     public const float gameDuration = 60.0f;//1 min 
     uint targetDestroyedCount = 0;
     float currentTime = 0.0f;
-    bool started = false;
+    public bool started = false;
 
     public delegate void GameEndTypeEmitter();
 
@@ -26,7 +26,7 @@ public class GameManager : UnDestroyable {
 
 	// Use this for initialization
 	void Start () {
-		
+        NewGame();
 	}
 	
 	// Update is called once per frame
@@ -35,7 +35,7 @@ public class GameManager : UnDestroyable {
         {
             currentTime += Time.deltaTime;
             if (currentTime >= gameDuration)
-            { 
+            {
                 GameEnd();
             }
             else
