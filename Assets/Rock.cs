@@ -9,7 +9,7 @@ public class Rock : MonoBehaviour {
     public string collisionObjectName;
     // Use this for initialization
     void Start () {
-        Destroy(gameObject, 15);
+        //Destroy(gameObject, 15);
     }
 	
 	// Update is called once per frame
@@ -19,7 +19,7 @@ public class Rock : MonoBehaviour {
 
     public void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.name == collisionObjectName)
+        if(collision.gameObject.tag == collisionObjectName)
         {
             Destroy(collision.gameObject);
             GameObject g = Instantiate(particles, collision.contacts[0].point, Quaternion.identity);
