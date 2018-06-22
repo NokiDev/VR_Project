@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 54886450351602886}
   - component: {fileID: 65053047840742958}
   - component: {fileID: 82567110053927302}
+  - component: {fileID: 114582087800027458}
   m_Layer: 0
   m_Name: Rock 04 prefab
   m_TagString: Rock
@@ -223,3 +224,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114582087800027458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b95db2d7f1b574f82fd4a4a90ccd3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 1274576691384972, guid: f04e7a909cd826040a9313c27640d6e7, type: 2}
+  crashSoft: {fileID: 8300000, guid: 68294e2c8a92b654497b80fc1629e141, type: 3}
+  collisionObjectName: Target
