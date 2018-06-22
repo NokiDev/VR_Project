@@ -47,19 +47,21 @@ public class TargetHit : MonoBehaviour {
             source.PlayOneShot(crashSoft, hitVol);
         }
 
-        if (collision.gameObject.name == "Terrain")
+        if (collision.gameObject.name == "Plane")
         {
             Vector3 pos = gameObject.transform.position;
-            GameObject mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
+            float max = 5f;
+            /*GameObject mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0];
             float max;
+            Debug.Log(mainCamera.GetComponents<Spawn>()[0]);
             if (mainCamera.GetComponents<Spawn>()[0].nameTag == "Rock")
             {
                 max = mainCamera.GetComponents<Spawn>()[0].maxDistance;
             } else
             {
                 max = mainCamera.GetComponents<Spawn>()[1].maxDistance;
-            }
-            //Debug.Log("dist" + max);
+            }*/
+            Debug.Log("dist" + max);
             if (pos.x > max || pos.z > max || pos.x < 0 - max || pos.z < 0 - max)
                 Destroy(gameObject);
         }
