@@ -56,7 +56,7 @@ public class TargetHit : MonoBehaviour {
             {
                 max = mainCamera.GetComponents<Spawn>()[1].maxDistance;
             }
-            Debug.Log("dist" + max);
+            //Debug.Log("dist" + max);
             if (pos.x > max || pos.z > max || pos.x < 0 - max || pos.z < 0 - max)
                 Destroy(gameObject);
         }
