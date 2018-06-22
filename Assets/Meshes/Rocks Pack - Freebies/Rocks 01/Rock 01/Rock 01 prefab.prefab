@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 54638485278390244}
   - component: {fileID: 114770493545828008}
   - component: {fileID: 82998494189566318}
+  - component: {fileID: 114689952069406042}
   m_Layer: 0
   m_Name: Rock 01 prefab
   m_TagString: Rock
@@ -135,11 +136,11 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2c3139ff4d9c2824d85cced938227480, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -224,6 +225,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114689952069406042
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b95db2d7f1b574f82fd4a4a90ccd3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 1274576691384972, guid: f04e7a909cd826040a9313c27640d6e7, type: 2}
+  crashSoft: {fileID: 8300000, guid: 68294e2c8a92b654497b80fc1629e141, type: 3}
+  collisionObjectName: Target
 --- !u!114 &114770493545828008
 MonoBehaviour:
   m_ObjectHideFlags: 1
