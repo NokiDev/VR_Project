@@ -9,6 +9,7 @@ public class HandsData : MonoBehaviour {
     public delegate void FloatEmitter(float value);
     public delegate void BoolEmitter(bool value);
     public delegate void IntegerEmitter(int value);
+    public delegate void UIntegerEmitter(uint value);
     public delegate void EmptyEmitter();
 
 
