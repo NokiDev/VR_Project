@@ -8,6 +8,8 @@ public class TargetHit : MonoBehaviour {
 
     public AudioClip crashSoft;
 
+    
+
     //public Score score;
 
     private AudioSource source;
@@ -18,9 +20,12 @@ public class TargetHit : MonoBehaviour {
     
 
     public string collisionObjectName;
+
+    private GameManager gameManager;
     // Use this for initialization
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         source = GetComponent<AudioSource>();
     }
 
@@ -38,12 +43,12 @@ public class TargetHit : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == collisionObjectName)
+        if (collision.gameObject.tag == collisionObjectName)
         {
             Destroy(collision.gameObject);
             GameObject g = Instantiate(particles, collision.contacts[0].point, Quaternion.identity);
             Destroy(g, 4);
-
+            gameManager.IncrementScore(1);
             //score.addPoint();
 
             source.pitch = Random.Range(lowPitchRange, highPitchRange);

@@ -47,7 +47,7 @@ public class GameManager : UnDestroyable {
         }
     }
 
-    void NewGame()
+    public void NewGame()
     {
         if(!started)
         {
@@ -59,7 +59,7 @@ public class GameManager : UnDestroyable {
         }
     }
 
-    void GameEnd()
+    public void GameEnd()
     {
         started = false;
         if (OnGameEnd != null)
@@ -68,9 +68,10 @@ public class GameManager : UnDestroyable {
         //CheckScore.
     }
 
-    void IncrementScore(uint amount)
+    public void IncrementScore(uint amount)
     {
         targetDestroyedCount += amount;
-        OnScoreChanged(targetDestroyedCount);
+        if (OnScoreChanged != null)
+            OnScoreChanged(targetDestroyedCount);
     }
 }
