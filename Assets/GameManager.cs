@@ -70,8 +70,11 @@ public class GameManager : UnDestroyable {
 
     public void IncrementScore(uint amount)
     {
-        targetDestroyedCount += amount;
-        if (OnScoreChanged != null)
-            OnScoreChanged(targetDestroyedCount);
+        if(started)
+        {
+            targetDestroyedCount += amount;
+            if (OnScoreChanged != null)
+                OnScoreChanged(targetDestroyedCount);
+        }
     }
 }
